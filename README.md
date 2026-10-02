@@ -298,28 +298,3 @@ python -m pytest -q      # 26 test
 Mencakup ingestion, chunking, embedding, retrieval, reranking, failure detection, hard negative mining, dataset (termasuk leakage), evaluasi, API, tool MCP, dan satu **integrasi closed-loop** (query, retrieval, evaluasi, deteksi kegagalan, dataset, training, evaluasi ulang). Test dijalankan lulus di Python 3.9 dan 3.12.
 
 Regenerasi aset README: `python scripts/generate_readme_assets.py` (diagram dari data seed) dan `python scripts/capture_screenshots.py` (screenshot, butuh Playwright dan kedua server berjalan).
-
-## <img src="docs/assets/icons/scale.svg" width="26" align="center"> Batasan yang jujur
-
-- Embedding hashing lokal dan reranker linear dipilih agar berjalan tanpa GPU atau API key. Kualitas absolutnya bukan state of the art.
-- Dataset evaluasi kecil (12 query) dan didominasi kasus versi dokumen. Hasil eksperimen adalah bukti konsep pipeline, bukan klaim generalisasi.
-- Reranker hasil training sangat condong ke fitur `is_latest`; ia bisa menaikkan section lain dari versi terbaru di atas section yang benar dari versi lama. Dataset yang lebih beragam diperlukan untuk menyeimbangkannya.
-- Vector store default berupa numpy in-memory dari tabel `document_chunks`. Antarmuka `VectorStore` siap diganti Qdrant atau pgvector, tetapi adapter-nya belum dibuat.
-- Mode HF/LoRA tersedia sebagai modul terpisah dan belum dijalankan pada seed karena membutuhkan torch.
-- Docker Compose belum diverifikasi end-to-end.
-
-## Roadmap
-
-- [ ] Adapter Qdrant / pgvector
-- [ ] Dataset evaluasi lebih besar dan beragam (bukan hanya versi dokumen)
-- [ ] Embedding model sungguhan (sentence-transformers) sebagai provider
-- [ ] Menjalankan fine-tuning cross-encoder LoRA pada dataset hasil mining
-- [ ] CI GitHub Actions untuk test dan build frontend
-
----
-
-<div align="center">
-
-Dibuat sebagai proyek portofolio AI Engineer: fokus pada **diagnosis kegagalan RAG** dan **peningkatan retrieval yang terukur**.
-
-</div>
