@@ -1,0 +1,14 @@
+[
+ {"query": "Apa saja langkah backup server produksi?", "ground_truth_chunk": "SOP_Backup_v4_section_3"},
+ {"query": "Tata cara backup server harian", "ground_truth_chunk": "SOP_Backup_v4_section_3"},
+ {"query": "Berapa hari backup disimpan sebelum dihapus?", "ground_truth_chunk": "SOP_Backup_v4_section_4"},
+ {"query": "Kapan backup penuh server dijalankan?", "ground_truth_chunk": "SOP_Backup_v4_section_2"},
+ {"query": "Jadwal backup inkremental server", "ground_truth_chunk": "SOP_Backup_v4_section_2"},
+ {"query": "Seberapa sering restore test backup dilakukan?", "ground_truth_chunk": "SOP_Backup_v4_section_5"},
+ {"query": "Apakah backup server dienkripsi?", "ground_truth_chunk": "SOP_Backup_v4_section_6"},
+ {"query": "Siapa yang bertanggung jawab atas backup?", "ground_truth_chunk": "SOP_Backup_v4_section_1"},
+ {"query": "Prosedur pencadangan data server rumah sakit", "ground_truth_chunk": "SOP_Backup_v4_section_3"},
+ {"query": "Retensi backup server berapa lama?", "ground_truth_chunk": "SOP_Backup_v4_section_4"},
+ {"query": "Cara memastikan backup bisa dipulihkan", "ground_truth_chunk": "SOP_Backup_v4_section_5"},
+ {"query": "Bagaimana prosedur backup server saat ini?", "ground_truth_chunk": "SOP_Backup_v4_section_3"}
+]
