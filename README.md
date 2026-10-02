@@ -20,12 +20,6 @@ Platform riset AI Engineering yang mendiagnosis *kenapa* RAG salah, lalu **belaj
 
 </div>
 
----
-
-## Daftar isi
-
-[Ringkasan](#ringkasan) - [Cara kerja](#cara-kerja) - [Fitur](#fitur) - [Demo version mismatch](#demo-version-mismatch) - [Hasil eksperimen](#hasil-eksperimen) - [Tampilan aplikasi](#tampilan-aplikasi) - [Arsitektur](#arsitektur) - [Quick start](#quick-start) - [Tutorial 10 menit](#tutorial-10-menit-menjalankan-closed-loop) - [Troubleshooting](#troubleshooting) - [MCP server](#mcp-server) - [API](#api) - [Pengujian](#pengujian) - [Batasan](#batasan-yang-jujur)
-
 ## <img src="docs/assets/icons/lightbulb.svg" width="26" align="center"> Ringkasan
 
 Kebanyakan proyek RAG berhenti di "chatbot yang menjawab dari dokumen". Masalahnya, RAG sering **gagal diam-diam**: dokumen yang diambil salah versi, salah section, atau mirip secara topik tetapi tidak menjawab pertanyaan, dan tidak ada yang tahu.
@@ -186,25 +180,7 @@ Screenshot di bawah diambil dari aplikasi yang berjalan dengan data seed.
 
 <img src="docs/assets/architecture.svg" alt="Arsitektur RAG-Relearn" width="100%">
 
-```
-rag-relearn/
-├── frontend/       React + TS + Tailwind + Recharts + TanStack Query + React Router
-├── backend/app/    FastAPI, SQLAlchemy (17 tabel), routers/, seed.py, auth JWT
-├── mcp-server/     12 tool MCP (FastMCP), meneruskan ke /api/mcp/invoke
-├── ml/             retrieval, reranking, evaluation, failure_detection, hard_negative,
-│                   training, experiments, ingestion, providers (tanpa dependensi web)
-├── data/           9 SOP seed, eval_dataset.json, train_queries.json
-├── tests/          26 test: unit, API, integrasi closed-loop
-├── scripts/        dev.sh, generate_seed_docs.py, capture_screenshots.py, generate_readme_assets.py
-├── docker/ docker-compose.yml .env.example
-└── docs/           ARCHITECTURE.md + aset README
-```
-
-Desain penting: logika RAG ada di `ml/` tanpa dependensi web, sehingga mudah diuji dan diganti. Backend hanya orkestrasi + penyimpanan. MCP server dan UI memakai satu implementasi tool yang sama.
-
 ## <img src="docs/assets/icons/rocket.svg" width="26" align="center"> Quick start
-
-Jalur di bawah sudah diuji untuk **macOS/Linux + conda**. Backend mendukung Python 3.9+, disarankan 3.11.
 
 **Prasyarat:** Python (conda atau venv) dan Node.js 18+.
 
@@ -253,22 +229,6 @@ docker compose up --build
 ```
 
 Frontend di http://localhost:3000. Konfigurasi Docker belum diverifikasi end-to-end oleh penulis, jadi jalur lokal di atas adalah yang teruji.
-
-## <img src="docs/assets/icons/book-open.svg" width="26" align="center"> Tutorial 10 menit: menjalankan closed-loop
-
-Ikuti urutan ini di UI untuk melihat satu putaran penuh.
-
-1. **Dashboard**: lihat KPI dan grafik. Model production saat ini `v2`.
-2. **RAG Playground**: pilih *Model version* `v1`, jalankan query bawaan. Muncul badge `Document version mismatch` dan jawaban dari v3.
-3. Klik **View failure analysis**: baca *failure explanation*, *root cause*, dan *recommended action*.
-4. Klik **Generate hard negative**, lalu buka menu **Hard Negatives**. Review dan tekan **Approve** pada kandidat bertipe `wrong_version`.
-5. Menu **Training Dataset**: klik **Generate dataset baru**. Periksa kartu *Quality validation* dan coba export JSONL.
-6. Menu **Training Center**: pilih dataset, tekan **Mulai training**. Kurva loss bergerak per epoch, lalu muncul model baru berstatus `candidate`.
-7. Menu **A/B Testing**: bandingkan `v1` dengan model baru. Baca selisih metrik; keputusan promosi ada pada Anda.
-8. Menu **Models**: **Promote** ke production (ada dialog konfirmasi).
-9. Menu **Experiments**: jalankan eksperimen baru dan lihat perbandingan empat konfigurasi. Hasil lama tetap tersimpan.
-
-Akun demo (hanya saat `AUTH_ENABLED=true`): `admin/admin123`, `researcher/research123`, `viewer/viewer123`. Mode default berjalan tanpa login.
 
 ## <img src="docs/assets/icons/wrench.svg" width="26" align="center"> Troubleshooting
 
