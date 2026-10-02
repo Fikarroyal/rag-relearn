@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="docs/assets/logo.svg" width="72" alt="RAG Relearn logo">
+<img src="docs/assets/logo.svg" width="72" alt="RAG-Relearn logo">
 
-# RAG-Relearn
+# RAG Relearn
 
 **Retrieval Failure Analysis and Continuous RAG Improvement**
 
